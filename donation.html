@@ -1,0 +1,30 @@
+<!--<form method="post" action="https://www.sofort.com/payment/start">-->
+    <!--<input type="hidden" name="user_id" value="105003" />-->
+    <!--<input type="hidden" name="project_id" value="215689" />-->
+    <!--<input type="hidden" name="reason_1" value="Test-Überweisung" />-->
+    <!--<input type="hidden" name="reason_2" value="Bestellnummer" />-->
+    <!--<input type="hidden" name="amount" value="0.17" />-->
+    <!--<input type="submit" value="Absenden" />-->
+<!--</form>-->
+
+<!--<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">-->
+    <!--<input type="hidden" name="cmd" value="_s-xclick">-->
+    <!--<input type="hidden" name="hosted_button_id" value="CZ2XGPARJ7BDN">-->
+    <!--<input type="image" src="https://www.paypalobjects.com/de_DE/DE/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="Jetzt einfach, schnell und sicher online bezahlen – mit PayPal.">-->
+    <!--<img alt="" border="0" src="https://www.paypalobjects.com/de_DE/i/scr/pixel.gif" width="1" height="1">-->
+<!--</form>-->
+
+<div style="width:500px; height:500px">
+    <h2>Spende</h2>
+
+    <form method="post" action="donationDigest.php" target="_blank" style="margin-bottom:20px">
+        <!--Spendenbetrag: <input type="text" name="amount"><br>-->
+        <!--<br>-->
+        PayPal: <input type="radio" name="payKind" value="PP"><br>
+        Sofortüberweisung: <input type="radio" name="payKind" value="SOU"><br>
+        <br>
+        <input type="submit" value="Absenden">
+    </form>
+
+    <div style="padding:3px;background-color:#ccc;font-size:14px;font-style:italic">Nach dem Klick auf "Absenden" werden sie zu dem entsprechenden Zahlungsdienstleister weitergeleitet.</div>
+</div>
