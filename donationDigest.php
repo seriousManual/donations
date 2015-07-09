@@ -1,11 +1,13 @@
 <?php
 
-    $ppHandler = new Handler('https://www.paypal.com/cgi-bin/webscr');
+    error_reporting(E_ALL);
+
+    $ppHandler = new Destination('https://www.paypal.com/cgi-bin/webscr');
     $ppHandler
         ->addParam('cmd', '_s-xclick')
         ->addParam('hosted_button_id', 'CZ2XGPARJ7BDN');
 
-    $sofortHandler = new Handler('https://www.sofort.com/payment/start');
+    $sofortHandler = new Destination('https://www.sofort.com/payment/start');
     $sofortHandler
         ->addParam('user_id', '105003')
         ->addParam('project_id', '215689')
@@ -13,29 +15,47 @@
         ->addParam('reason_2', '1');
 
 
-    $handlers = [
+    $destinations = Array(
         'PP' => $ppHandler,
         'SOU' => $sofortHandler
-    ];
+    );
 
-    $type = $_POST['payKind'];
-    if (!isset($handlers[$type])) {
-        header('Location: donation.html');
+    $payKind = $_POST['payKind'];
+
+    if ($payKind == 'SEPA') {
+        sendMail($_REQUEST);
+    } else if ($payKind == 'SOU' || $payKind == 'PP') {
+        sendMail($_REQUEST);
+        runExternal($destinations[$payKind]);
+    } else {
+        header('Location:donation.html');
     }
 
-    $handler = $handlers[$type];
+    function runExternal(Destination $destination) {
+        $destination->addParam('amount', $_POST['amount']);
+        $url = $destination->getUrl();
+        $params = http_build_query($destination->getParams());
+        $completeUrl = $url . '?' . $params;
 
-    $url = $handler->getUrl();
-    $params = http_build_query($handler->getParams());
-    $completeUrl = $url . '?' . $params;
+        header('Location: ' . $completeUrl);
+    }
 
-    header('Location: ' . $completeUrl);
+    function sendMail(Array $data) {
+        $text = '';
 
+        foreach($data as $key => $value) {
+            $text .= $key . ": \n";
+            $text .= $value;
+            $text .= "\n\n";
+        }
 
+        mail('mnlrnst@gmail.com', 'spende', $text);
+        header('Location:donation.html');
+    }
 
-    class Handler {
+    class Destination {
         private $url;
-        private $params = [];
+        private $params = Array();
 
         function __construct ($url) {
             $this->url = $url;
@@ -45,7 +65,7 @@
          * @param $key
          * @param $value
          *
-         * @return Handler
+         * @return Destination
          */
         function addParam($key, $value) {
             $this->params[$key] = $value;
