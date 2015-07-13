@@ -36,5 +36,5 @@ function sendMail(Array $data) {
         $text .= "\n\n";
     }
 
-    mail('mnlrnst@gmail.com', 'spende', $text);
+    mail('f.ernst@nehemia.org', 'spende', $text);
 }
