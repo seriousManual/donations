@@ -1,84 +1,83 @@
+
 <html>
-    <head>
-        <title>donation</title>
+<head>
+    <title>donation</title>
 
-        <meta charset="utf-8"/>
+    <meta charset="utf-8"/>
 
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
 
-        <style type="text/css">
-            #sepaDetails {
-                display: none;
-            }
+    <style type="text/css">
+        #sepaDetails {
+            display: none;
+        }
 
-            #receipt {
-                display: none;
-            }
-        </style>
+        #receipt {
+            display: none;
+        }
+    </style>
 
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $('input[name=payKind]').on('change', function(ev) {
-                    var type = $(this).val();
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('input[name=payKind]').on('change', function(ev) {
+                var type = $(this).val();
 
-                    if (type == 'SEPA') {
-                        $('#sepaDetails').show();
-                    } else {
-                        $('#sepaDetails').hide();
-                    }
-                });
-
-                $('input[name=receipt]').on('change', function(ev) {
-                    if ( $(this).val() == '1') {
-                        $('#receipt').show();
-                    } else {
-                        $('#receipt').hide();
-                    }
-                });
+                if (type == 'SEPA') {
+                    $('#sepaDetails').show();
+                } else {
+                    $('#sepaDetails').hide();
+                }
             });
-        </script>
-    </head>
-    <body>
-        <h2>Spende</h2>
 
-        <form method="post" action="donationDigest.php">
-            Name: <input type="text" name="name"><br>
-            Vorname: <input type="text" name="firstName"><br>
-            E-Mail Adresse: <input type="text" name="mail"><br>
-            Verwendungszweck: <input type="text" name="purpose"><br>
-            <br>
+            $('input[name=receipt]').on('change', function(ev) {
+                if ( $(this).val() == '1') {
+                    $('#receipt').show();
+                } else {
+                    $('#receipt').hide();
+                }
+            });
+        });
+    </script>
+</head>
 
-            Spendenquittung erwünscht?<br>
-            ja <input type="radio" name="receipt" value="1">
-            nein <input type="radio" name="receipt" value="0" checked>
-
-            <div id="receipt">
-                Straße + Hausnummer: <input type="text" name="street"><br>
-                PLZ: <input type="text" name="zip"><br>
-                Stadt: <input type="text" name="city">
-            </div>
-
-            <br><br>
-            Spendenbetrag: <input type="text" name="amount"><br>
-
-            <h3>Ihr Zahlungswunsch:</h3>
-            SEPA-Lastschrift: <input type="radio" name="payKind" value="SEPA"><br>
-            PayPal: <input type="radio" name="payKind" value="PP" checked><br>
-            Sofortüberweisung: <input type="radio" name="payKind" value="SOU"><br>
-            <br>
-
-            <div id="sepaDetails">
-                Frequenz:
-                <select name="frequency">
-                    <option value="oneTime">Einmalig</option>
-                    <option value="monthly">Monatlich</option>
-                    <option value="yearly">Jährlich</option>
-                </select><br>
-                <br>
-                <input type="checkbox" name="authorization"> Ich erteile Ihnen hiermit das Mandat, den Spendenbetrag von meinem Konto einzuziehen. Ich werde meine Bank entsprechend unterrichten.
-                <br><br>
-            </div>
-            <input type="submit" value="Absenden">
-        </form>
-    </body>
+<body>
+<p>&nbsp;</p>
+<p><strong>Danke, dass Sie die Arbeit von AVC finanziell unterst&uuml;tzen m&ouml;chten. <br /></strong></p>
+<p>Wenn Sie eine &Uuml;berweisung t&auml;tigen m&ouml;chten, so verwenden Sie bitte die folgende Bankverbindung:</p>
+<p>Kontoinhaber: AVC</p>
+<p>IBAN: DE37 5206 0410 0004 1130 12<br />BIC: &nbsp; GENODEF1EK1</p>
+<p>&nbsp;</p>
+<p><strong>F&uuml;r eine online-&Uuml;berweisung machen Sie bitte die entstprechenden Angaben und w&auml;hlen Sie die Zahlungsmethode.</strong></p>
+<form action="donationDigest.php" method="post">
+    <p><label for="name" style="float: left; width: 120px;">Name:</label> <input name="name" size="20" type="text" style="height: 16pt;" /></p>
+    <p><label for="vorname" style="float: left; width: 120px;">Vorname:</label> <input name="vorname" size="20" type="text" style="height: 16pt;" /></p>
+    <p><label for="mail" style="float: left; width: 120px;">E-Mail:</label> <input name="mail" size="20" type="text" style="height: 16pt;" /></p>
+    <p><label for="purpose" style="float: left; width: 120px;">Spendenzweck:</label> <input name="name" size="20" type="text" style="height: 16pt;" /></p>
+    <p>&nbsp;</p>
+    <p>Spendenquittung erw&uuml;nscht?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ja <input name="receipt" type="radio" value="1" /> nein <input checked="checked" name="receipt" type="radio" value="0" /></p>
+    <div id="receipt">
+        <p><label for="street" style="float: left; width: 120px;">Stra&szlig;e:</label> <input name="street" size="20" type="text" style="height: 16pt;" /></p>
+        <p><label for="plz" style="float: left; width: 120px;">PLZ:</label> <input name="plz" size="20" type="text" style="height: 16pt;" /></p>
+        <p><label for="city" style="float: left; width: 120px;">Stra&szlig;e</label> <input name="city" size="20" type="text" style="height: 16pt;" /></p>
+    </div>
+    <p><label for="amount" style="float: left; width: 120px;">Betrag:</label> <input name="amount" size="20" type="text" style="height: 16pt;" /></p>
+    <p><strong>Zahlungsmethode:</strong></p>
+    SEPA-Lastschrift: <input  name="payKind" type="radio" value="SEPA" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    PayPal: <input  name="payKind" type="radio" value="PP" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Sofort&uuml;berweisung: <input checked="checked" name="payKind" type="radio" value="SOU" />
+    <br />
+    <br />
+    <div id="sepaDetails">
+        <p><label for="frequency" style="float: left; width: 120px;">Frequenz</label>
+            <select name="frequency" width="20" >
+                <option checked="checked" value="oneTime">einmalig</option>
+                <option value="monthly">monatlich</option>
+                <option value="quarterly">viertelj&auml;hrlich</option>
+                <option value="yearly">j&auml;hrlich</option>
+            </select></p>
+        <input name="authorization" type="checkbox" /> Ich erteile Ihnen hiermit das Mandat, den Spendenbetrag von meinem Konto einzuziehen. Ich werde meine Bank entsprechend unterrichten. <br /><br /></div>
+    <div>&nbsp;</div>
+    
+    <input type="submit" value="Absenden" /></form>
+</body>
 </html>
