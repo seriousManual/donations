@@ -5,21 +5,25 @@
     require_once('./classes.php');
 
     $payKind = $_POST['payKind'];
+    $purposeMarker = $_POST['purpose2'];
+
+    $purpose = Purposes::getPurposeByMarker($purposeMarker) ?: Purposes::$DEFAULTPURPOSE;
 
     if ($payKind == 'SEPA') {
         sendMail($_REQUEST);
         header("Location: donationThankyou.html");
     } else if ($payKind == 'SOU') {
-        runExternal(new SofortDestination());
+        runExternal(new SofortDestination(), $purpose);
         sendMail($_REQUEST);
     } else if ($payKind == 'PP') {
-        runExternal(new PPDestination());
+        runExternal(new PPDestination(), $purpose);
         sendMail($_REQUEST);
     }
 
-    function runExternal(Destination $destination) {
+    function runExternal(Destination $destination, $purpose) {
         $destination->setAmount($_POST['amount']);
-        $destination->setPurpose($_POST['purpose']);
+        $destination->setPurpose1($purpose);
+        $destination->setPurpose2($_POST['purpose1']);
 
         $url = $destination->getUrl();
         $params = http_build_query($destination->getParams());

@@ -1,5 +1,22 @@
 <?php
 
+class Purposes {
+    private static $purposes = Array(
+        'P1' => 'Spende ABC',
+        'P2' => 'Spende XYZ'
+    );
+
+    static $DEFAULTPURPOSE = 'Spende Nehemia';
+
+    static function getPurposeByMarker($marker) {
+        if (isset(self::$purposes[$marker])) {
+            return self::$purposes[$marker];
+        }
+
+        return null;
+    }
+}
+
 class PPDestination extends Destination {
     function __construct() {
         parent::__construct('https://www.paypal.com/cgi-bin/webscr');
@@ -10,7 +27,8 @@ class PPDestination extends Destination {
     }
 
     function setAmount($amount) {}
-    function setPurpose($amount) {}
+    function setPurpose1($purpose) {}
+    function setPurpose2($purpose) {}
 }
 
 class SofortDestination extends Destination {
@@ -19,11 +37,14 @@ class SofortDestination extends Destination {
 
         $this
             ->addParam('user_id', '105003')
-            ->addParam('project_id', '215689')
-            ->addParam('reason_1', 'Spende Nehemia');
+            ->addParam('project_id', '215689');
     }
 
-    function setPurpose($purpose) {
+    function setPurpose1($purpose) {
+        $this->addParam('reason_1', $purpose);
+    }
+
+    function setPurpose2($purpose) {
         $this->addParam('reason_2', $purpose);
     }
 
@@ -37,7 +58,8 @@ abstract class Destination {
     private $params = Array();
 
     abstract function setAmount($amount);
-    abstract function setPurpose($purpose);
+    abstract function setPurpose1($purpose);
+    abstract function setPurpose2($purpose);
 
     function __construct ($url) {
         $this->url = $url;

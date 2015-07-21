@@ -1,3 +1,14 @@
+<?php
+    require_once('classes.php');
+
+    $purposes = Array(
+        'P1' => 'Spende ABC',
+        'P2' => 'Spende XYZ'
+    );
+
+    $purposeMarker = isset($_GET['purpose']) ? $_GET['purpose'] : '';
+    $purpose = Purposes::getPurposeByMarker($purposeMarker) ? $purposeMarker : '';
+?>
 
 <html>
 <head>
@@ -52,7 +63,7 @@
     <p><label for="name" style="float: left; width: 120px;">Name:</label> <input name="name" size="20" type="text" style="height: 16pt;" /></p>
     <p><label for="vorname" style="float: left; width: 120px;">Vorname:</label> <input name="vorname" size="20" type="text" style="height: 16pt;" /></p>
     <p><label for="mail" style="float: left; width: 120px;">E-Mail:</label> <input name="mail" size="20" type="text" style="height: 16pt;" /></p>
-    <p><label for="purpose" style="float: left; width: 120px;">Spendenzweck:</label> <input name="name" size="20" type="text" style="height: 16pt;" /></p>
+    <p><label for="purpose1" style="float: left; width: 120px;">Spendenzweck:</label> <input name="purpose1" size="20" type="text" style="height: 16pt;" /></p>
     <p>&nbsp;</p>
     <p>Spendenquittung erw&uuml;nscht?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ja <input name="receipt" type="radio" value="1" /> nein <input checked="checked" name="receipt" type="radio" value="0" /></p>
     <div id="receipt">
@@ -77,7 +88,9 @@
             </select></p>
         <input name="authorization" type="checkbox" /> Ich erteile Ihnen hiermit das Mandat, den Spendenbetrag von meinem Konto einzuziehen. Ich werde meine Bank entsprechend unterrichten. <br /><br /></div>
     <div>&nbsp;</div>
-    
+
+    <input type="hidden" name="purpose2" value="<?php echo $purpose; ?>">
+
     <input type="submit" value="Absenden" /></form>
 </body>
 </html>
