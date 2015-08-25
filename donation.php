@@ -26,6 +26,10 @@
         #receipt {
             display: none;
         }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif
+        }
     </style>
 
     <script type="text/javascript">
@@ -58,8 +62,8 @@
 <p>Kontoinhaber: AVC</p>
 <p>IBAN: DE37 5206 0410 0004 1130 12<br />BIC: &nbsp; GENODEF1EK1</p>
 <p>&nbsp;</p>
-<p><strong>F&uuml;r eine online-&Uuml;berweisung machen Sie bitte die entstprechenden Angaben und w&auml;hlen Sie die Zahlungsmethode.</strong></p>
-<form action="donationDigest.php" method="post">
+<p><strong>F&uuml;r eine Online-&Uuml;berweisung machen Sie bitte die entstprechenden Angaben und w&auml;hlen Sie die Zahlungsmethode.</strong></p>
+<form action="donationDigest.php" method="post" target="_blank">
     <p><label for="name" style="float: left; width: 120px;">Name:</label> <input name="name" size="20" type="text" style="height: 16pt;" /></p>
     <p><label for="vorname" style="float: left; width: 120px;">Vorname:</label> <input name="vorname" size="20" type="text" style="height: 16pt;" /></p>
     <p><label for="mail" style="float: left; width: 120px;">E-Mail:</label> <input name="mail" size="20" type="text" style="height: 16pt;" /></p>
@@ -73,9 +77,9 @@
     </div>
     <p><label for="amount" style="float: left; width: 120px;">Betrag:</label> <input name="amount" size="20" type="text" style="height: 16pt;" /></p>
     <p><strong>Zahlungsmethode:</strong></p>
-    SEPA-Lastschrift: <input  name="payKind" type="radio" value="SEPA" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    PayPal: <input  name="payKind" type="radio" value="PP" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    Sofort&uuml;berweisung: <input checked="checked" name="payKind" type="radio" value="SOU" />
+    <label>SEPA-Lastschrift: <input  name="payKind" type="radio" value="SEPA" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+    <label>PayPal: <input  name="payKind" type="radio" value="PP" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+    <label>Sofort&uuml;berweisung: <input checked="checked" name="payKind" type="radio" value="SOU" /></label>
     <br />
     <br />
     <div id="sepaDetails">
@@ -86,7 +90,7 @@
                 <option value="quarterly">viertelj&auml;hrlich</option>
                 <option value="yearly">j&auml;hrlich</option>
             </select></p>
-        <input name="authorization" type="checkbox" /> Ich erteile Ihnen hiermit das Mandat, den Spendenbetrag von meinem Konto einzuziehen. Ich werde meine Bank entsprechend unterrichten. <br /><br /></div>
+        <label><input name="authorization" type="checkbox" /> Ich erteile Ihnen hiermit das Mandat, den Spendenbetrag von meinem Konto einzuziehen. Ich werde meine Bank entsprechend unterrichten.</label> <br /><br /></div>
     <div>&nbsp;</div>
 
     <input type="hidden" name="purpose2" value="<?php echo $purpose; ?>">
