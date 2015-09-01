@@ -6,7 +6,7 @@ class Purposes {
         'P2' => 'Spende XYZ'
     );
 
-    static $DEFAULTPURPOSE = 'Spende Nehemia';
+    static $DEFAULTPURPOSE = 'Spende allgemein';
 
     static function getPurposeByMarker($marker) {
         if (isset(self::$purposes[$marker])) {
@@ -23,7 +23,7 @@ class PPDestination extends Destination {
 
         $this
             ->addParam('cmd', '_s-xclick')
-            ->addParam('hosted_button_id', 'CZ2XGPARJ7BDN');
+            ->addParam('hosted_button_id', 'AVWH23N9N3FHU');
     }
 
     function setAmount($amount) {}
@@ -36,8 +36,8 @@ class SofortDestination extends Destination {
         parent::__construct('https://www.sofort.com/payment/start');
 
         $this
-            ->addParam('user_id', '105003')
-            ->addParam('project_id', '215689');
+            ->addParam('user_id', '113524')
+            ->addParam('project_id', '235565');
     }
 
     function setPurpose1($purpose) {
