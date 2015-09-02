@@ -22,11 +22,16 @@ class PPDestination extends Destination {
         parent::__construct('https://www.paypal.com/cgi-bin/webscr');
 
         $this
-            ->addParam('cmd', '_s-xclick')
-            ->addParam('hosted_button_id', 'AVWH23N9N3FHU');
+            ->addParam('cmd', '_donations')
+            ->addParam('business', '9ZF86AF36GG7S')
+            ->addParam('item_name', 'Projekt')
+            ->addParam('item_number', 'Test')
+            ->addParam('currency_code', 'EUR');
     }
 
-    function setAmount($amount) {}
+    function setAmount($amount) {
+        $this->addParam('amount', $amount);
+    }
     function setPurpose1($purpose) {}
     function setPurpose2($purpose) {}
 }
