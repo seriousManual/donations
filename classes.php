@@ -25,7 +25,7 @@ class PPDestination extends Destination {
             ->addParam('cmd', '_donations')
             ->addParam('business', '9ZF86AF36GG7S')
             ->addParam('item_name', 'Projekt')
-            ->addParam('item_number', 'Test')
+            ->addParam('item_number', 'Spende')
             ->addParam('currency_code', 'EUR');
     }
 
