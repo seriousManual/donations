@@ -90,7 +90,7 @@
                 <option value="quarterly">viertelj&auml;hrlich</option>
                 <option value="yearly">j&auml;hrlich</option>
             </select></p>
-            <p><label for="iban" style="float: left; width: 120px;">IBAN:</label> <input name="name" size="40" type="text" style="height: 16pt;" /></p>
+            <p><label for="iban" style="float: left; width: 120px;">IBAN:</label> <input name="iban" size="40" type="text" style="height: 16pt;" /></p>
         <label><input name="authorization" type="checkbox" /> Ich erteile Ihnen hiermit das Mandat, den Spendenbetrag von meinem Konto einzuziehen. Ich werde meine Bank entsprechend unterrichten.</label> <br /><br /></div>
     <div>&nbsp;</div>
 
