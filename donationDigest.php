@@ -8,6 +8,9 @@
     $purposeMarker = $_POST['purpose2'];
 
     $purpose = Purposes::getPurposeByMarker($purposeMarker) ?: Purposes::$DEFAULTPURPOSE;
+    
+    $_REQUEST['purpose1'] = str_replace('iran', 'morgenland', $_REQUEST['purpose1']);
+    $_REQUEST['purpose1'] = str_replace('kuba', 'insel', $_REQUEST['purpose1']);
 
     if ($payKind == 'SEPA') {
         sendMail($_REQUEST);
