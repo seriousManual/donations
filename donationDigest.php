@@ -8,19 +8,19 @@
     $purposeMarker = $_POST['purpose2'];
 
     $purpose = Purposes::getPurposeByMarker($purposeMarker) ?: Purposes::$DEFAULTPURPOSE;
-    
-    $_REQUEST['purpose1'] = str_replace('iran', 'morgenland', $_REQUEST['purpose1']);
-    $_REQUEST['purpose1'] = str_replace('kuba', 'insel', $_REQUEST['purpose1']);
+
+    $_POST['purpose1'] = str_replace('iran', 'morgenland', $_POST['purpose1']);
+    $_POST['purpose1'] = str_replace('kuba', 'insel', $_POST['purpose1']);
 
     if ($payKind == 'SEPA') {
-        sendMail($_REQUEST);
+        sendMail($_POST);
         header("Location: donationThankyou.html");
     } else if ($payKind == 'SOU') {
         runExternal(new SofortDestination(), $purpose);
-        sendMail($_REQUEST);
+        sendMail($_POST);
     } else if ($payKind == 'PP') {
         runExternal(new PPDestination(), $purpose);
-        sendMail($_REQUEST);
+        sendMail($_POST);
     }
 
     function runExternal(Destination $destination, $purpose) {
